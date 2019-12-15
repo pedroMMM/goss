@@ -17,7 +17,13 @@ install: release/goss-linux-amd64
 
 test:
 	$(info INFO: Starting build $@)
-	go test -coverprofile=cover.out $(pkgs)
+	{ \
+set -ex ;\
+go test -coverprofile=c.out ${pkgs} ;\
+cat c.out | sed 's|github.com/aelsabbahy/goss/||' > c.out.tmp ;\
+mv c.out.tmp c.out ;\
+}
+
 
 lint:
 	$(info INFO: Starting build $@)

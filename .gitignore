@@ -15,5 +15,5 @@ tmp/
 
 /.idea
 
-#
-/cover.out
+/c.out
+/c.out.tmp
