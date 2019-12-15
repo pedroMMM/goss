@@ -1,19 +1,29 @@
+env:
+  global:
+    - CC_TEST_REPORTER_ID=3af2fdc78699b5151e7ce396abec56fe6c520f1a1f4086bd383dcda75239a057
+
 language: go
 
 go:
-- 1.13.x
+  - 1.13.x
 
 sudo: required
 dist: trusty
 
 services:
-- docker
+  - docker
 
 before_install:
-- go get -u golang.org/x/lint/golint
+  - go get -u golang.org/x/lint/golint
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
 
 script:
-- make
+  - make
+
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 
 deploy:
   provider: releases
