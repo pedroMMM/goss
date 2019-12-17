@@ -11,3 +11,4 @@ plugins:
 exclude_patterns:
   - "!**/**.go"
   - "**/*_test.go"
+  - "resource/resource_list.go"
