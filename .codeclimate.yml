@@ -1,0 +1,13 @@
+version: "2"
+
+plugins:
+  gofmt:
+    enabled: true
+  golint:
+    enabled: true
+  govet:
+    enabled: true
+
+exclude_patterns:
+  - "!**/**.go"
+  - "**/*_test.go"
